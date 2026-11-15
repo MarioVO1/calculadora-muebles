@@ -1,6 +1,6 @@
 // Valores neutros. Los reales se capturan en la pantalla de Ajustes (toque largo sobre el título) y se guardan en el celular.
 const CONFIG = {
-  ejemploActivo: true,      // true = muestra el letrero "VALORES DE EJEMPLO". Pon false con los datos reales
+  ejemploActivo: true,      // true = muestra el letrero "Márgenes en prueba". Pon false con los datos reales
 
   valorDiaTrabajo: 0,       // lo que vale un día de trabajo del carpintero (pesos)
 

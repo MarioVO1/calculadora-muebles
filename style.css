@@ -13,9 +13,10 @@ body {
   top: 0;
   z-index: 10;
   padding: 12px;
-  background: #ffd600;
-  color: #000;
-  font-size: 24px;
+  background: #fff3c4;
+  color: #6b5a1e;
+  border-bottom: 1px solid #e8d98f;
+  font-size: 20px;
   font-weight: bold;
   text-align: center;
 }
