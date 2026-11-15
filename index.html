@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de muebles</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="ejemplo" hidden>VALORES DE EJEMPLO</div>
+  <main>
+    <h1 id="titulo">Calculadora de muebles</h1>
+
+    <p id="sin-ajustes" class="grande-aviso" hidden>Primero captura tus ajustes</p>
+
+    <div class="pestanas">
+      <button type="button" data-pantalla="mueble" class="activo">Mueble</button>
+      <button type="button" data-pantalla="puertas">Puertas</button>
+    </div>
+
+    <div id="pantalla-mueble">
+
+    <label class="campo">
+      <span class="titulo">Material ($)</span>
+      <input id="material" type="number" inputmode="numeric" min="0" placeholder="0">
+    </label>
+
+    <label class="campo">
+      <span class="titulo">Días que calcula</span>
+      <input id="dias" type="number" inputmode="decimal" min="0" step="0.5" value="1" placeholder="1">
+    </label>
+
+    <div class="campo" data-grupo="modo">
+      <span class="titulo">¿Cómo lo harás?</span>
+      <div class="opciones">
+        <button type="button" data-valor="De corrido" class="activo">De corrido</button>
+        <button type="button" data-valor="Con otros pedidos a la vez">Con otros pedidos a la vez</button>
+      </div>
+    </div>
+
+    <div class="campo" data-grupo="cliente">
+      <span class="titulo">Cliente</span>
+      <div class="opciones">
+        <button type="button" data-valor="Fácil">Fácil</button>
+        <button type="button" data-valor="Normal" class="activo">Normal</button>
+        <button type="button" data-valor="Exigente">Exigente</button>
+      </div>
+    </div>
+
+    <div class="campo" data-grupo="entrega">
+      <span class="titulo">Entrega</span>
+      <div class="opciones">
+        <button type="button" data-valor="No" class="activo">No</button>
+        <button type="button" data-valor="Cerca">Cerca</button>
+        <button type="button" data-valor="Lejos">Lejos</button>
+      </div>
+    </div>
+
+    <div class="campo" data-grupo="quien">
+      <span class="titulo">Quién ayuda</span>
+      <div class="opciones">
+        <button type="button" data-valor="Nadie" class="activo">Nadie</button>
+        <button type="button" data-valor="Abuelo">Abuelo</button>
+        <button type="button" data-valor="Abuelo y chalán">Abuelo y chalán</button>
+      </div>
+    </div>
+
+    <label class="campo">
+      <span class="titulo">Días de ayudantes</span>
+      <input id="dias-ayudantes" type="number" inputmode="decimal" min="0" step="0.5" value="0" placeholder="0">
+    </label>
+
+    <div class="acciones">
+      <button type="button" id="calcular" class="principal">CALCULAR</button>
+      <button type="button" id="nuevo" class="secundario">NUEVO</button>
+    </div>
+
+    <p id="aviso" role="alert"></p>
+
+    <section id="resultado" hidden>
+      <div class="precio pierdes">
+        <span>Abajo de esto pierdes</span>
+        <strong id="r-pierdes"></strong>
+      </div>
+      <div class="precio normal">
+        <span>Precio normal</span>
+        <strong id="r-normal"></strong>
+      </div>
+      <div class="precio maximo">
+        <span>Máximo que puedes pedir</span>
+        <strong id="r-maximo"></strong>
+      </div>
+      <p id="r-dias" class="dias-usados"></p>
+      <div id="grande" hidden>
+        <p class="grande-aviso">Trabajo grande: cobra por partes</p>
+        <div class="parte"><span id="p-anticipo-t"></span><strong id="p-anticipo"></strong></div>
+        <div class="parte"><span id="p-avance-t"></span><strong id="p-avance"></strong></div>
+        <div class="parte"><span id="p-entrega-t"></span><strong id="p-entrega"></strong></div>
+      </div>
+    </section>
+
+    </div>
+
+    <div id="pantalla-puertas" hidden>
+      <label class="campo">
+        <span class="titulo">Cantidad de puertas</span>
+        <input id="p-cantidad" type="number" inputmode="numeric" min="1" step="1" placeholder="1">
+      </label>
+
+      <label class="campo">
+        <span class="titulo">Material por puerta ($)</span>
+        <input id="p-material" type="number" inputmode="numeric" min="0" value="2375">
+      </label>
+
+      <div class="campo" data-grupo="instalada">
+        <span class="titulo">Instalada</span>
+        <div class="opciones">
+          <button type="button" data-valor="Sí">Sí</button>
+          <button type="button" data-valor="No" class="activo">No</button>
+        </div>
+      </div>
+
+      <div class="acciones">
+        <button type="button" id="p-calcular" class="principal">CALCULAR</button>
+        <button type="button" id="p-nuevo" class="secundario">NUEVO</button>
+      </div>
+
+      <p id="p-aviso" role="alert"></p>
+
+      <section id="p-resultado" hidden>
+        <div class="precio pierdes">
+          <span>Costo total</span>
+          <strong id="pr-total"></strong>
+        </div>
+        <div class="precio pierdes">
+          <span>Costo por puerta</span>
+          <strong id="pr-costo-puerta"></strong>
+        </div>
+        <div class="precio normal">
+          <span id="pr-precio-t">Precio normal por puerta</span>
+          <strong id="pr-precio"></strong>
+        </div>
+        <p id="pr-descuento" class="grande-aviso" hidden></p>
+        <p id="pr-margen" class="grande-aviso"></p>
+      </section>
+    </div>
+
+    <section id="pantalla-ajustes" hidden>
+      <h2>Ajustes</h2>
+      <div id="ajustes-campos"></div>
+      <p id="ajustes-aviso" role="alert"></p>
+      <div class="acciones">
+        <button type="button" id="a-guardar" class="principal">GUARDAR</button>
+        <button type="button" id="a-cerrar" class="secundario">CERRAR</button>
+      </div>
+      <button type="button" id="a-restaurar" class="secundario ancho">Restaurar</button>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
